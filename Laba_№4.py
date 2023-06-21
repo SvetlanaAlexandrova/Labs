@@ -1,6 +1,6 @@
 class Human:
     default_name = 'Имя'
-    default_age = 0
+    default_age = 20
 
     def __init__(self, name=default_name, age=default_age):
         self.name = name
@@ -9,24 +9,24 @@ class Human:
         self.__house = None
 
     def info(self):
-        print('{0}, возраст - {1}, денег - {2} млн'.format(self.name, self.age, self.__money), end=', ')
+        print('{0}, возраст - {1}, денег - {2} млн..'.format(self.name, self.age, self.__money), end=', ')
         print('нет дома') if self.__house is None else print('дом {0}'.format(self.__house.info()))
 
     def earn_money(self, money):
         self.__money += money
-        print('Вы заработали', self.__money, 'млн')
+        print('Заработано', self.__money, 'млн')
 
     def buy_house(self, house, discount):
-        print('Покупка дома {0}, скидка - {1}%...'.format(house.info(), discount))
+        print('Покупка дома {0}, скидка - {1}%..'.format(house.info(), discount))
         if self.__money >= house.final_price(discount):
             self.__make_deal(house, discount)
         else:
-            print('> У вас недостаточно средств')
+            print('- Недостаточно средств!')
 
     def __make_deal(self, house, discount):
         self.__money -= house.final_price(discount)
         self.__house = house
-        print('> Вы купили дом!')
+        print('- Дом куплен!')
 
     @staticmethod
     def default_info():
@@ -49,28 +49,26 @@ class SmallHouse(House):
     def __init__(self, price):
         super().__init__(40, price)
 
-
-# 1. Метод default_info() для класса Human
+# 1. Вызываем справочный метод default_info() для класса Human()
 Human.default_info()
 
-# 2. Объект класса Human
-hum = Human('Марк', 21)
+# 2. Создаем объект класса Human
+hum = Human('Марк', 20)
 
-# 3. Информация об объекте
+# 3. Выводим справочную информацию о созданном объекте
 hum.info()
 
-# 4. Объект класса SmallHouse
-building = SmallHouse(18)
+# 4. Создаем объект класса SmallHouse
+building = SmallHouse(40)
 
-# 5. Покупка дома
+# 5. Пробуем купить созданный дом
 hum.buy_house(building, 5)
 
-# 6. Получение заработка
-hum.earn_money(40)
+# 6. Поправляем положение объекта
+hum.earn_money(80)
 
-# 7. Покупка дома 2.0
+# 7. Пробуем купить созданный дом 2 раз
 hum.buy_house(building, 5)
 
-# 8. Информация об объекте
+# 8. Вызываем справочную информацию по объекту
 hum.info()
-
