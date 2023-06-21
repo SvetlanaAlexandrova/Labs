@@ -38,7 +38,7 @@ class House:
         self.__area = area
         self.__price = price
 
-    def final_price(self, discount=100):
+    def final_price(self, discount=0):
         return self.__price * (100 - discount) / 100
 
     def info(self):
